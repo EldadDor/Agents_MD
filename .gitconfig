@@ -1,0 +1,10 @@
+[http]
+	sslVerify = false
+[user]
+	name = EldadDor
+[http "https://github.com"]
+	sslVerify = false
+	proxy = fp-proxy-servers.relay.yashir.co.il
+
+[credential]
+    helper = store --file=.git/.repo-credentials
