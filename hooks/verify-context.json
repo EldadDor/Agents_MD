@@ -1,0 +1,18 @@
+$hooksDir = Join-Path $WorkspacePath ".github\hooks"
+New-Item -ItemType Directory -Force -Path $hooksDir | Out-Null
+
+$hookJson = @{
+    version = 1
+    hooks   = @{
+        sessionStart = @(
+            @{
+                type       = "command"
+                powershell = "./.github/hooks/scripts/verify-context.ps1"
+                timeoutSec = 10
+            }
+        )
+    }
+} | ConvertTo-Json -Depth 5
+
+$hookPath = Join-Path $hooksDir "verify-context.json"
+$hookJson | Set-Content -Path $hookPath -Encoding UTF8
